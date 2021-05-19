@@ -28,7 +28,7 @@ function App() {
       },
     };
     try {
-      const res = await axios.get("/users/information", config);
+      const res = await axios.get("https://cardenceformbackend.herokuapp.com/users/information", config);
       const {
         TelegramID,
         name,
@@ -71,7 +71,7 @@ function App() {
         familyName: response.last_name,
         telegramAuthDate: response.auth_date,
       };
-      const res = await axios.post("/users/telegramCred", payload);
+      const res = await axios.post("https://cardenceformbackend.herokuapp.com/users/telegramCred", payload);
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
     } catch (error) {
@@ -82,7 +82,7 @@ function App() {
     if (!walletError && !emailError && telegramID && tweetClicked && followClicked ) {
       const data = { emailAddress, walletAddress, telegramID, tweetClicked, followClicked };
       try {
-        const res = await axios.post("/users/saveData", data);
+        const res = await axios.post("https://cardenceformbackend.herokuapp.com/users/saveData", data);
         setToken(res.data.token);
         localStorage.setItem("token", res.data.token);
       } catch (error) {
